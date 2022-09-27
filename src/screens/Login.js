@@ -5,15 +5,15 @@ import logo from '../../assets/mainlogo.png'
 import { button1 } from '../common/button'
 import { formgroup, head1, head2, input, label, link, link2 } from '../common/formcss'
 
-const Login = () => {
+const Login = ({ navigation }) => {
     return (
         <View style={styles.container}>
             <Image style={styles.patternbg} source={pattern} />
 
-            <View style={styles.container1}>
+            <View style={styles.container1} >
                 <View style={styles.s1}>
-                    {/* <Image style={styles.logo} source={logo} /> */}
-                    <Text style={styles.h1}>Used2, Inc.</Text>
+                    <Image style={styles.logo} source={logo} />
+                    <Text style={styles.h1} onPress={() => navigation.navigate('welcome')}>Used2, Inc.</Text>
                     <Text style={styles.small1}>Buying and selling online</Text>
                 </View>
                 <View style={styles.s2}>
@@ -21,18 +21,24 @@ const Login = () => {
                     <Text style={head2}>Sign in to continue</Text>
                     <View style={formgroup}>
                         <Text style={label}>Email</Text>
-                        <TextInput style={input} />
+                        <TextInput style={input}
+                            placeholder="Enter your email"
+                        />
                     </View>
                     <View style={formgroup}>
                         <Text style={label}>Password</Text>
-                        <TextInput style={input} />
+                        <TextInput style={input}
+                            placeholder="Enter your password"
+                        />
                     </View>
                     <View style={styles.fp}>
                         <Text style={link}>Forgot Password?</Text>
                     </View>
                     <Text style={button1}>Login</Text>
-                    <Text style={link2}>Don't have an account?
-                        <Text style={link}>
+                    <Text style={link2}>Don't have an account?&nbsp;
+                        <Text style={link}
+                            onPress={() => navigation.navigate('signup')}
+                        >
                             Create a new account
                         </Text>
                     </Text>
@@ -110,5 +116,9 @@ const styles = StyleSheet.create({
         alignItems: 'flex-end',
         marginHorizontal: 10,
         marginVertical: 5,
+    },
+    logo: {
+        height: 80,
+        resizeMode: 'contain',
     }
 })

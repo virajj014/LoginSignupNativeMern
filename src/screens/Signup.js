@@ -1,11 +1,13 @@
-import { StyleSheet, Text, View, Image, TextInput } from 'react-native'
+import { StyleSheet, Text, View, Image, TextInput, ScrollView } from 'react-native'
 import React from 'react'
 import pattern from '../../assets/pattern.png'
 import logo from '../../assets/mainlogo.png'
 import { button1 } from '../common/button'
 import { formgroup, head1, head2, input, input1, label, link, link2 } from '../common/formcss'
 
-const Signup = () => {
+const Signup = ({
+    navigation
+}) => {
     return (
         <View style={styles.container}>
             <Image style={styles.patternbg} source={pattern} />
@@ -14,10 +16,12 @@ const Signup = () => {
                 <View style={styles.s1}>
 
                 </View>
-                <View style={styles.s2}>
+                <ScrollView style={styles.s2}>
                     <Text style={head1}>Create a New Account</Text>
                     <Text style={link2}>Already Registered?&nbsp;
-                        <Text style={link}>
+                        <Text style={link}
+                            onPress={() => navigation.navigate('login')}
+                        >
                             Login here
                         </Text>
                     </Text>
@@ -47,7 +51,7 @@ const Signup = () => {
                         <TextInput style={input1} placeholder="Enter your Address" />
                     </View>
                     <Text style={button1}>Signup</Text>
-                </View>
+                </ScrollView>
             </View>
         </View>
     )
@@ -60,6 +64,7 @@ const styles = StyleSheet.create({
         width: '100%',
         height: '100%',
         display: 'flex',
+
     },
     patternbg: {
         position: 'absolute',
@@ -98,6 +103,7 @@ const styles = StyleSheet.create({
         borderTopLeftRadius: 30,
         borderTopRightRadius: 30,
         padding: 20,
+
     },
     formgroup: {
         display: 'flex',

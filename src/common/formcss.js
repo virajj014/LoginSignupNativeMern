@@ -17,8 +17,8 @@ module.exports = {
         marginVertical: 8,
     },
     label: {
-        fontSize: 17,
-        color: '#000',
+        fontSize: 14,
+        color: '#F50057',
         marginLeft: 10,
         marginBottom: 3,
     },
@@ -26,7 +26,7 @@ module.exports = {
         backgroundColor: "#FFB0CC",
         borderRadius: 20,
         paddingHorizontal: 10,
-        paddingVertical: 5,
+        paddingVertical: 10,
     },
     link: {
         color: '#F50057',
@@ -42,8 +42,10 @@ module.exports = {
         backgroundColor: "#FFB0CC",
         borderRadius: 10,
         paddingHorizontal: 10,
-        paddingVertical: 5,
+        paddingVertical: 10,
         height: 100,
+        textAlignVertical: 'top',
+
     },
 
 }

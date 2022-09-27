@@ -3,16 +3,20 @@ import React from 'react'
 import pattern from '../../assets/pattern.png'
 import welcomelogo from '../../assets/welcomelogo.png'
 import { button1 } from '../common/button'
-const Welcome = () => {
+const Welcome = ({ navigation }) => {
     return (
         <View style={styles.container}>
             <Image style={styles.patternbg} source={pattern} />
-            {/* <Text style={styles.head}>hii</Text> */}
+
             <View style={styles.container1}>
-                {/* <Text style={styles.head}>Welcome to</Text> */}
-                {/* <Image style={styles.logo} source={welcomelogo} /> */}
-                <Text style={button1}>Login</Text>
-                <Text style={button1}>Signup</Text>
+
+                <Image style={styles.logo} source={welcomelogo} />
+                <Text style={button1}
+                    onPress={() => navigation.navigate('login')}
+                >Login</Text>
+                <Text style={button1}
+                    onPress={() => navigation.navigate('signup')}
+                >Signup</Text>
             </View>
         </View>
     )
@@ -45,8 +49,8 @@ const styles = StyleSheet.create({
         width: '100%',
     },
     logo: {
-        // height: 200,
-        width: 200,
-
+        height: '20%',
+        resizeMode: 'contain',
+        marginBottom: 50,
     }
 })

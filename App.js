@@ -5,6 +5,7 @@ import Signup from './src/screens/Signup';
 import Welcome from './src/screens/Welcome';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import Homepage from './src/screens/Homepage';
 
 
 
@@ -36,6 +37,16 @@ export default function App() {
               headerShown: false
             }
           }
+
+        />
+
+        <Stack.Screen name="homepage" component={Homepage}
+          options={
+            {
+              headerShown: false
+            }
+          }
+
         />
       </Stack.Navigator>
     </NavigationContainer>

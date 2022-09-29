@@ -1,11 +1,46 @@
 import { StyleSheet, Text, View, Image, TextInput } from 'react-native'
-import React from 'react'
+import React, { useState } from 'react'
 import pattern from '../../assets/pattern.png'
 import logo from '../../assets/mainlogo.png'
 import { button1 } from '../common/button'
-import { formgroup, head1, head2, input, label, link, link2 } from '../common/formcss'
+import { errormessage, formgroup, head1, head2, input, label, link, link2 } from '../common/formcss'
 
 const Login = ({ navigation }) => {
+    const [fdata, setFdata] = useState({
+        email: '',
+        password: ''
+    })
+
+    const [errormsg, setErrormsg] = useState(null);
+
+    const Sendtobackend = () => {
+        // console.log(fdata);
+        if (fdata.email == '' || fdata.password == '') {
+            setErrormsg('All fields are required');
+            return;
+        }
+        else {
+            fetch('http://10.0.2.2:3000/signin', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(fdata)
+            })
+                .then(res => res.json()).then(
+                    data => {
+                        // console.log(data);
+                        if (data.error) {
+                            setErrormsg(data.error);
+                        }
+                        else {
+                            alert('logged successfully');
+                            navigation.navigate('homepage');
+                        }
+                    }
+                )
+        }
+    }
     return (
         <View style={styles.container}>
             <Image style={styles.patternbg} source={pattern} />
@@ -17,24 +52,39 @@ const Login = ({ navigation }) => {
                     <Text style={styles.small1}>Buying and selling online</Text>
                 </View>
                 <View style={styles.s2}>
+
                     <Text style={head1}>Login</Text>
                     <Text style={head2}>Sign in to continue</Text>
+                    {
+                        errormsg ? <Text style={errormessage}>{errormsg}</Text> : null
+                    }
                     <View style={formgroup}>
                         <Text style={label}>Email</Text>
                         <TextInput style={input}
                             placeholder="Enter your email"
+
+                            onPressIn={() => setErrormsg(null)}
+                            onChangeText={(text) => setFdata({ ...fdata, email: text })}
                         />
                     </View>
                     <View style={formgroup}>
                         <Text style={label}>Password</Text>
                         <TextInput style={input}
                             placeholder="Enter your password"
+
+                            secureTextEntry={true}
+
+                            onChangeText={(text) => setFdata({ ...fdata, password: text })}
+                            onPressIn={() => setErrormsg(null)}
+
                         />
                     </View>
                     <View style={styles.fp}>
                         <Text style={link}>Forgot Password?</Text>
                     </View>
-                    <Text style={button1}>Login</Text>
+                    <Text style={button1}
+                        onPress={() => Sendtobackend()}
+                    >Login</Text>
                     <Text style={link2}>Don't have an account?&nbsp;
                         <Text style={link}
                             onPress={() => navigation.navigate('signup')}

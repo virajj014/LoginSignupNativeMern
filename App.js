@@ -6,6 +6,7 @@ import Welcome from './src/screens/Welcome';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Homepage from './src/screens/Homepage';
+import Verification from './src/screens/Verification';
 
 
 
@@ -48,6 +49,16 @@ export default function App() {
           }
 
         />
+
+        <Stack.Screen name="verification" component={Verification}
+          options={
+            {
+              headerShown: false
+            }
+          }
+
+        />
+
       </Stack.Navigator>
     </NavigationContainer>
 

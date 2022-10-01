@@ -37,7 +37,7 @@ const Signup = ({
                 return;
             }
             else {
-                fetch('http://10.0.2.2.:3000/signup', {
+                fetch('http://10.0.2.2.:3000/verify', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -47,12 +47,14 @@ const Signup = ({
                     .then(res => res.json()).then(
                         data => {
                             // console.log(data);
-                            if (data.error) {
-                                setErrormsg(data.error);
+                            if (data.error === 'Invalid Credentials') {
+                                // alert('Invalid Credentials')
+                                setErrormsg('Invalid Credentials')
                             }
-                            else {
-                                alert('account created successfully');
-                                navigation.navigate('login');
+                            else if (data.message === "Verification Code Sent to your Email") {
+                                // console.log(data.udata);
+                                alert(data.message);
+                                navigation.navigate('verification', { userdata: data.udata })
                             }
                         }
                     )
